@@ -56,11 +56,7 @@ async function run(): Promise<void> {
     const sourceMetadata = JSON.stringify(getSourceMetadata(jobId));
     const cloudUrl = core.getInput("cloud-url") || null;
 
-    const sourceSchemaFiles = core
-      .getInput("source-schema-files", { required: true })
-      .split("\n")
-      .map((f) => f.trim())
-      .filter((f) => f.length > 0);
+    const sourceSchemaFiles = core.getMultilineInput("source-schema-files", { required: true });
 
     for (const sourceSchemaFile of sourceSchemaFiles) {
       await uploadSourceSchema(sourceSchemaFile, tag, apiId, apiKey, sourceMetadata, cloudUrl);

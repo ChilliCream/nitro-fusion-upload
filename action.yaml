@@ -17,7 +17,7 @@ inputs:
     required: true
     secret: true
   source-schema-files:
-    description: "Newline-separated list of paths to source schema files (.graphqls) or directories containing source schema files"
+    description: "Paths to source schema files (.graphqls) or directories containing source schema files"
     required: true
   cloud-url:
     description: "The URL of the Nitro registry"
