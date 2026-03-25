@@ -13,6 +13,8 @@ A GitHub Action that uploads GraphQL source schemas to the Nitro registry.
     source-schema-files:
       - ./src/SchemaA/schema.graphqls
       - ./src/SchemaB/schema.graphqls
+    # Optional
+    cloud-url: <cloud-url>
 ```
 
 ## Inputs
