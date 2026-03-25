@@ -1,0 +1,32 @@
+name: "Nitro Fusion Upload"
+description: "Uploads GraphQL source schemas to the Nitro registry"
+author: "ChilliCream"
+branding:
+  icon: "upload-cloud"
+  color: "purple"
+
+inputs:
+  tag:
+    description: "The tag of the schema version to deploy"
+    required: true
+  api-id:
+    description: "The ID of the API"
+    required: true
+  api-key:
+    description: "API key for authentication"
+    required: true
+    secret: true
+  source-schema-files:
+    description: "Newline-separated list of paths to source schema files (.graphqls) or directories containing source schema files"
+    required: true
+  cloud-url:
+    description: "The URL of the Nitro registry"
+    required: false
+  job-id:
+    description: "The ID of the current job"
+    required: false
+    default: ${{ job.check_run_id }}
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
