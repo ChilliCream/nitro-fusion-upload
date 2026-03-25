@@ -19,7 +19,7 @@ A GitHub Action that uploads GraphQL source schemas to the Nitro registry.
 
 | Name                  | Required | Description                                        |
 | --------------------- | -------- | -------------------------------------------------- |
-| `tag`                 | Yes      | The tag of the schema version to deploy            |
+| `tag`                 | Yes      | The version of the source schemas being uploaded   |
 | `api-id`              | Yes      | The ID of the API                                  |
 | `api-key`             | Yes      | API key for authentication                         |
 | `source-schema-files` | Yes      | Newline-separated list of source schema file paths |

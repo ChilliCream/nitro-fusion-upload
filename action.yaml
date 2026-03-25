@@ -7,7 +7,7 @@ branding:
 
 inputs:
   tag:
-    description: "The tag of the schema version to deploy"
+    description: "The version of the source schemas being uploaded"
     required: true
   api-id:
     description: "The ID of the API"
