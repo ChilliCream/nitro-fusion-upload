@@ -39,13 +39,14 @@ jobs:
           cache: yarn
           cache-dependency-path: yarn.lock
 
+      - name: 📦 Install dependencies
+        run: yarn install
+
       - name: 📝 Update version in package.json
         run: npm version "${{ github.event.client_payload.version }}" --no-git-tag-version
 
-      - name: 📦 Install dependencies and build
-        run: |
-          yarn install
-          yarn build
+      - name: 🏗️ Build
+        run: yarn build
 
       - name: 📝 Commit changes
         id: commit
