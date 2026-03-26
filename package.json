@@ -23,6 +23,6 @@
     "@actions/exec": "^3.0.0",
     "@actions/github": "^9.0.0",
     "@actions/tool-cache": "^4.0.0",
-    "@chillicream/nitro-github-actions": "0.0.2"
+    "@chillicream/nitro-github-actions": "0.0.3"
   }
 }
