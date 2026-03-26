@@ -21,6 +21,6 @@
   "dependencies": {
     "@actions/core": "^3.0.0",
     "@actions/exec": "^3.0.0",
-    "@chillicream/nitro-github-actions": "^0.0.1"
+    "@chillicream/nitro-github-actions": "0.0.2"
   }
 }
