@@ -39935,7 +39935,7 @@ hasValidationErrors = false) {
 }
 //# sourceMappingURL=index.js.map
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject = /*#__PURE__*/JSON.parse('{"rE":"16.1.0-p.1.4"}');
+const package_namespaceObject = /*#__PURE__*/JSON.parse('{"rE":"16.1.0-p.1.5"}');
 ;// CONCATENATED MODULE: ./src/index.ts
 
 
