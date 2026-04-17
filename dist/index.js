@@ -39768,13 +39768,13 @@ async function installNitro(version) {
     const toolName = "nitro";
     let toolPath = find(toolName, version);
     if (!toolPath) {
-        const extension = osType === "win" ? "zip" : "tar.gz";
+        const extension = osType === "linux" ? "tar.gz" : "zip";
         const downloadUrl = `https://github.com/ChilliCream/graphql-platform/releases/download/${version}/nitro-${osType}-${archType}.${extension}`;
         info(`Downloading Nitro CLI from: ${downloadUrl}`);
         const downloadPath = await downloadTool(downloadUrl);
-        const extractPath = osType === "win"
-            ? await extractZip(downloadPath)
-            : await extractTar(downloadPath);
+        const extractPath = osType === "linux"
+            ? await extractTar(downloadPath)
+            : await extractZip(downloadPath);
         toolPath = await cacheDir(extractPath, toolName, version);
     }
     addPath(toolPath);
