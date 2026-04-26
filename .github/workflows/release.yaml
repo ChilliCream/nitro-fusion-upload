@@ -15,12 +15,8 @@ on:
         description: Whether this version targets the top lane (version.major >= highest stable major).
         required: true
         type: boolean
-      correlation_id:
-        description: Correlation ID for caller tracking
-        required: true
-        type: string
 
-run-name: "🔄 Update to ${{ inputs.version }} [${{ inputs.correlation_id }}]"
+run-name: "🔄 Update to ${{ inputs.version }}"
 
 permissions:
   contents: write
