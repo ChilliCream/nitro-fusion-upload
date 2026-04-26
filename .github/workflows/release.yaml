@@ -1,105 +1,34 @@
 name: 🔄 Update Nitro CLI Version
 
 on:
-  repository_dispatch:
-    types:
-      - update-from-platform
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to update to
+        required: true
+        type: string
+      is_stable:
+        description: Whether this version is a stable (X.Y.Z) release.
+        required: true
+        type: boolean
+      is_active_major:
+        description: Whether this version targets the top lane (version.major >= highest stable major).
+        required: true
+        type: boolean
+      correlation_id:
+        description: Correlation ID for caller tracking
+        required: true
+        type: string
+
+run-name: "🔄 Update to ${{ inputs.version }} [${{ inputs.correlation_id }}]"
 
 permissions:
   contents: write
 
 jobs:
   update:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 🧪 Validate payload
-        shell: bash
-        run: |
-          if [ -z "${{ github.event.client_payload.version }}" ]; then
-            echo "Missing client_payload.version"
-            exit 1
-          fi
-
-      - name: 📥 Checkout
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
-      - name: 🧰 Enable Corepack
-        run: |
-          corepack enable
-          corepack prepare yarn@4.2.2 --activate
-          yarn --version
-
-      - name: 🧰 Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
-          cache: yarn
-          cache-dependency-path: yarn.lock
-
-      - name: 📦 Install dependencies
-        run: yarn install --immutable
-
-      - name: 📝 Update version in package.json
-        run: npm version "${{ github.event.client_payload.version }}" --no-git-tag-version
-
-      - name: 🏗️ Build
-        run: yarn build
-
-      - name: 📝 Commit changes
-        id: commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-
-          if git diff --cached --quiet; then
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-            echo "No changes to commit."
-          else
-            git commit -m "Update Nitro CLI to ${{ github.event.client_payload.version }}"
-            echo "has_changes=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: 📤 Push commit
-        if: steps.commit.outputs.has_changes == 'true'
-        run: git push
-
-      - name: 🏷️ Update version tags
-        shell: bash
-        run: |
-          VERSION="${{ github.event.client_payload.version }}"
-
-          git tag "v${VERSION}" --force
-          git push origin "v${VERSION}" --force
-
-          if [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            MAJOR=$(echo "$VERSION" | cut -d. -f1)
-            git tag "v${MAJOR}" --force
-            git push origin "v${MAJOR}" --force
-          fi
-
-      - name: 🚀 Create GitHub release for stable versions
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          VERSION="${{ github.event.client_payload.version }}"
-
-          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Preview version detected ($VERSION). Skipping release creation."
-            exit 0
-          fi
-
-          TAG="v${VERSION}"
-
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            echo "Release $TAG already exists. Skipping creation."
-            exit 0
-          fi
-
-          gh release create "$TAG" \
-            --title "$TAG" \
-            --verify-tag
+    uses: ChilliCream/nitro-github-actions/.github/workflows/update-cli-version.yaml@main
+    with:
+      version: ${{ inputs.version }}
+      is_stable: ${{ inputs.is_stable }}
+      is_active_major: ${{ inputs.is_active_major }}
