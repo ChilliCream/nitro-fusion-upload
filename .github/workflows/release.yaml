@@ -23,7 +23,7 @@ permissions:
 
 jobs:
   update:
-    uses: ChilliCream/nitro-github-actions/.github/workflows/update-cli-version.yaml@main
+    uses: ChilliCream/nitro-github-actions/.github/workflows/update-cli-version.yaml@1b12297b726e61b33f2cc8b60444faf339d95a4a
     with:
       version: ${{ inputs.version }}
       is_stable: ${{ inputs.is_stable }}
