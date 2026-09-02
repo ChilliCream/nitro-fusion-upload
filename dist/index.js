@@ -39776,12 +39776,16 @@ async function installNitro(version) {
             ? await extractTar(downloadPath)
             : await extractZip(downloadPath);
         toolPath = await cacheDir(extractPath, toolName, version);
+        // Only the freshly extracted binary is marked executable. A binary that is
+        // already in the tool cache was installed by an earlier job, possibly as a
+        // different user (a job container runs as root), and chmod on a file owned
+        // by another user fails with EPERM.
+        if (osType !== "win") {
+            const binaryPath = external_path_namespaceObject.join(toolPath, binaryName);
+            await exec_exec("chmod", ["+x", binaryPath]);
+        }
     }
     addPath(toolPath);
-    if (osType !== "win") {
-        const binaryPath = external_path_namespaceObject.join(toolPath, binaryName);
-        await exec_exec("chmod", ["+x", binaryPath]);
-    }
 }
 function getSourceMetadata(jobId) {
     const { /* context */ "_": context } = github_namespaceObject;
