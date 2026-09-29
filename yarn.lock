@@ -87,22 +87,22 @@ __metadata:
     "@actions/exec": "npm:^3.0.0"
     "@actions/github": "npm:^9.0.0"
     "@actions/tool-cache": "npm:^4.0.0"
-    "@chillicream/nitro-github-actions": "npm:0.0.6"
+    "@chillicream/nitro-github-actions": "npm:0.0.7"
     "@types/node": "npm:^22.0.0"
     "@vercel/ncc": "npm:^0.38.4"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
 
-"@chillicream/nitro-github-actions@npm:0.0.6":
-  version: 0.0.6
-  resolution: "@chillicream/nitro-github-actions@npm:0.0.6"
+"@chillicream/nitro-github-actions@npm:0.0.7":
+  version: 0.0.7
+  resolution: "@chillicream/nitro-github-actions@npm:0.0.7"
   peerDependencies:
     "@actions/core": ^3.0.0
     "@actions/exec": ^3.0.0
     "@actions/github": ^9.0.0
     "@actions/tool-cache": ^4.0.0
-  checksum: 10c0/39a8e89e83275f16a91dd929781522a5e64374e550462ae9f1b2e2857c9fe061587373f7485ab88aa3a93ceffa94f904ab239411d40cc91d3db0c4a56ac495a2
+  checksum: 10c0/339a306e39f1d85f65d9c53f0af0e110e99e853f850e3e5cd3d4a695d9cede8189cc4fec4b5953c5688ecab12366ab1e2ed8916cce85d4edfbca2cc7d2ccd9d9
   languageName: node
   linkType: hard
 
