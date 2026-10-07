@@ -7,14 +7,6 @@ on:
         description: Version to update to
         required: true
         type: string
-      is_stable:
-        description: Whether this version is a stable (X.Y.Z) release.
-        required: true
-        type: boolean
-      is_active_major:
-        description: Whether this version targets the top lane (version.major >= highest stable major).
-        required: true
-        type: boolean
 
 run-name: "🔄 Update to ${{ inputs.version }}"
 
@@ -23,8 +15,6 @@ permissions:
 
 jobs:
   update:
-    uses: ChilliCream/nitro-github-actions/.github/workflows/update-cli-version.yaml@ab1096f1a097cd7c52aa4f04cde527ca8a265441
+    uses: ChilliCream/nitro-github-actions/.github/workflows/update-cli-version.yaml@637a996105bb4c2b27adb0e5e0818ecfd8aab402
     with:
       version: ${{ inputs.version }}
-      is_stable: ${{ inputs.is_stable }}
-      is_active_major: ${{ inputs.is_active_major }}
