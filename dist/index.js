@@ -39953,7 +39953,7 @@ hasValidationErrors = false) {
 }
 //# sourceMappingURL=index.js.map
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject = {"rE":"16.7.1"};
+const package_namespaceObject = {"rE":"16.8.0-p.1"};
 ;// CONCATENATED MODULE: ./src/index.ts
 
 
